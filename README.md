@@ -1,2 +1,2 @@
-# pokemon-dl
-Fastai, Transfer Learning 150 Pokemon Classifier
+# Texas Snake Classifier
+Fastai, Transfer Learning resnet32
