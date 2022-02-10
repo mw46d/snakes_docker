@@ -1,5 +1,4 @@
-python==3.7
-fastai==1.0.52
-torch==1.5.1+cpu
+fastai==2.5.3
+torch==1.10.2
 flask
 

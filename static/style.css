@@ -77,13 +77,13 @@
 * ==========================================
 *
 */
-/* body {
+body {
     min-height: 100vh;
     background-color: #757f9a;
     background-image: linear-gradient(147deg, #757f9a 0%, #d7dde8 100%);
-} */
+}
 
-
+/*
 body {
 	background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
 	background-size: 400% 400%;
@@ -101,6 +101,7 @@ body {
 		background-position: 0% 50%;
 	}
 }
+*/
 
 /* Github fork css */
 .github-fork-ribbon {
@@ -222,4 +223,4 @@ body {
     -o-transform: rotate(-45deg);
     transform: rotate(-45deg);
   }
-  
+
