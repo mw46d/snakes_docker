@@ -19,6 +19,8 @@ app = Flask(__name__)
 # Loading  saved model
 model = load_learner(path + '/snakes_learner_export.pkl')
 
+# An array with more info for the different labels of the model. The training/model sorts
+# the labels/indexes alphabetically, so the array below has to match!
 snakes = [
         { 'common_name':  'Banded Rock Rattlesnake', 'species': 'Crotalus lepidus klauberi', 'venomous': 'V' },
         { 'common_name':  'Blacktail Rattlesnake', 'species': 'Crotalus molossus', 'venomous': 'V' },
@@ -66,7 +68,6 @@ def upload():
     # try:
         # Getting img from POST
         file = request.files['user-img'].read()
-        # Resizing img to 224 X 224 , This is the size on which model was trained
         img = PILImage.create(io.BytesIO(file))
 
         # Prediction using model
@@ -89,6 +90,8 @@ def upload():
             snakes[i]['species'].replace(' ', '+')
         )
         prediction += "</tr>"
+
+        # An attempt to list potentially other close matches. The cut-off of 0.25 can be changed as needed
         for k in range(len(probabilities)):
             if probabilities[k] > 0.25 and k != i:
                 if snakes[k]['venomous'] == "V":
@@ -111,4 +114,4 @@ def upload():
 
 #running app at localhost on port 8080
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8080)    
+    app.run(host='0.0.0.0', port=8080)
