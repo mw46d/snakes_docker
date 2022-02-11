@@ -11,6 +11,8 @@ RUN pip install -r requirements.txt
 
 COPY ./ ./
 
+RUN cd static && git clone https://github.com/bensonruan/webcam-easy.git
+
 EXPOSE 8080
 
 CMD ["python", "app.py"]

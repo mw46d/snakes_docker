@@ -23,41 +23,85 @@
         <header class="text-white text-center">
             <h1 class="display-4">Texas Snake Classifier</h1>
             <p class="lead mb-0">Fastai, Transfer-Learning DL Model</p>
-            <img src="static/resources/img_rsrc.svg" alt="" width="150" class="mb-4 pad">
         </header>
 
+	<ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a class="nav-link active" id="upload1-tab" data-toggle="tab" href="#upload1" role="tab" aria-controls="upload1" aria-selected="true">Upload</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="camera-tab" data-toggle="tab" href="#camera" role="tab" aria-controls="camera" aria-selected="false">Camera</a>
+            </li>
+        </ul>
 
-        <div class="row py-4">
-            <div class="col-lg-6 mx-auto center">
+	<div class="tab-content" id="myTabContent">
+  	    <div class="tab-pane fade active show" id="upload1" role="tabpanel" aria-labelledby="upload1-tab">
+                <div class="col-lg-6 mx-auto center">
 
-                <!-- Upload image input-->
-                <div class="input-group mb-3 rounded-pill bg-white shadow-sm">
                     <form class="input-form" id="myForm" action="/upload" method="post">
-                        <input id="upload" type="file" onchange="readURL(this);" class="form-control border-0">
-                        <label id="upload-label" for="upload" class="font-weight-light text-muted">Choose file</label>
+                        <div class="input-group mb-3 rounded-pill bg-white shadow-sm">
+                            <input id="upload" type="file" onchange="readURL(this);" class="form-control border-0">
+                            <label id="upload-label" for="upload" class="font-weight-light text-muted">Choose file</label>
 
-                </div>
-                <div class="image-area mt-4"><img id="imageResult" src="#" alt=""
-                        class="img-fluid rounded shadow-sm mx-auto d-block" width="224"></div>
+                        </div>
+                        <div class="image-area mt-4">
+			    <img id="imageResult" src="#" alt="" class="img-fluid rounded shadow-sm mx-auto d-block" width="224">
+			</div>
 
-                <!-- <input id="submit-btn" class="mb-3 px-2 py-2" type="button" value="Upload" onclick="submit()"> -->
-                <button id="submit-btn" class="pad" type="submit">UPLOAD</button>
-                </form>
+                        <button id="submit-btn" class="pad" type="submit">UPLOAD</button>
+                    </form>
+		</div>
+	    </div>
+            <div class="tab-pane fade" id="camera" role="tabpanel" aria-labelledby="camera-tab">
+                <div class="col-lg-6 mx-auto center">
+		    <div class="form-control webcam-start" id="webcam-control">
+                        <label class="form-switch">
+                            <input type="checkbox" id="webcam-switch">
+                            <i></i> 
+                            <span id="webcam-caption">Click to Start Camera</span>
+                        </label>      
+                        <button id="cameraFlip" class="btn d-none">Flip</button>                  
+                        <button id="takePhoto" class="btn d-none">Take Photo</button>                  
+                    </div>
+        	    <div id="errorMsg" class="col-12 col-md-6 alert-danger d-none">
+            	        Fail to start camera, please allow permision to access camera. <br/>
+                        If you are browsing through social media built in browsers, you would
+			need to open the page in Sarafi (iPhone)/ Chrome (Android)
+                        <button id="closeError" class="btn btn-primary ml-3">OK</button>
+                    </div>
+                    <div id="webcam-container" class="webcam-container d-none">
+                        <video id="webcam" autoplay playsinline width="320" height="240"></video>
+                        <canvas id="canvas" class="d-none"></canvas>
+			<div class="flash"></div>
+                        <audio id="snapSound" src="static/webcam-easy/demo/audio/snap.wav" preload = "auto"></audio>
+                    </div>
 
+                    <div class="image-area mt-4">
+		        <img id="cameraImageResult" src="#" alt="" class="img-fluid rounded shadow-sm mx-auto d-block" width="224">
+		    </div>
 
-                <!-- Result Area -->
-                <p class="font-italic text-white text-center pad">Prediction:
-                </p>
-                <div class="result-area mt-4"><p style="margin: 0; color: white; visibility: hidden;" id="result"><img src="static/resources/loading.svg" alt="" style="width: 35px;background: white; border-radius: 51%; "> Photo Uploaded...Processing...</p></div>
+                    <form class="input-form" id="myCameraForm" action="/upload" method="post">
+                        <button id="submit-btn" class="pad" type="submit">UPLOAD</button>
+                    </form>
+		</div>
+	    </div>
+	</div>
 
-            </div>
-        </div>
+        <!-- Result Area -->
+        <p class="font-italic text-white text-center pad">Prediction:</p>
+        <div class="result-area mt-4">
+	    <p style="margin: 0; color: white; visibility: hidden;" id="result">
+	        <img src="static/resources/loading.svg" alt="" style="width: 35px;background: white; border-radius: 51%; ">
+		Photo Uploaded...Processing...
+	    </p>
+	</div>
     </div>
     <!-- JS, Popper.js, and jQuery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <!-- local js -->
+    <script src="static/webcam-easy/dist/webcam-easy.js"></script>
     <script src="static/app.js"></script>
 </body>
 
